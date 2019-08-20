@@ -80,7 +80,10 @@ class IndexView(APIView):
             except:
                 pass
 
-        return render(request, "index.html", {"data": data_list})
+        if not data_list:
+            error = "没有相关数据"
+
+        return render(request, "index.html", {"data": data_list,"error":error})
 
     def filter_condition(self, mid_data="0**2"):
         length = len(mid_data)
